@@ -35,7 +35,25 @@
 #
 # Copyright 2015 Your name here, unless otherwise noted.
 #
-class icingaweb2 {
 
+class icingaweb2 (
+  $dbwebtype   = $icingaweb2::params::dbwebtype,
+  $dbwebhost   = $icingaweb2::params::dbwebhost,
+  $dbwebport   = $icingaweb2::params::dbwebport,
+  $dbwebuser   = $icingaweb2::params::dbwebuser,
+  $dbwebpasswd = $icingaweb2::params::dbwebpasswd,
+  $dbwebname   = $icingaweb2::params::dbwebname,
+  $dbtype      = $icingaweb2::params::dbtype,
+  $dbhost      = $icingaweb2::params::dbhost,
+  $dbport      = $icingaweb2::params::dbport,
+  $dbuser      = $icingaweb2::params::dbuser,
+  $dbpasswd    = $icingaweb2::params::dbpasswd,
+  $dbname      = $icingaweb2::params::dbname,
+) inherits icingaweb2::params {
 
+  Class[icingaweb2::package] -> Class[icingaweb2::configure]
+  
+  class{ 'icingaweb2::package': }
+  class{ 'icingaweb2::configure': }
+  
 }
