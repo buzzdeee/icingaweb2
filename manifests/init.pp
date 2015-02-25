@@ -49,15 +49,17 @@ class icingaweb2 (
   $dbuser      = $icingaweb2::params::dbuser,
   $dbpasswd    = $icingaweb2::params::dbpasswd,
   $dbname      = $icingaweb2::params::dbname,
+  $mods        = $icingaweb2::params::mods
 ) inherits icingaweb2::params {
 
   case $::osfamily {
     RedHat: {
       
-      Class[icingaweb2::package] -> Class[icingaweb2::configure]
+      Class[icingaweb2::package] -> Class[icingaweb2::configure] -> Class[icingaweb2::mods]
       
       class{ 'icingaweb2::package': }
       class{ 'icingaweb2::configure': }
+      class{ 'icingaweb2::mods': }
     }
     
     default: { fail("Currently unavailable for ${osfamily}") }
