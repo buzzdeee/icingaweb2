@@ -15,9 +15,9 @@ class icingaweb2::params {
   $default_confdir              = '/etc/icingaweb2'
   $system_mod_dir               = '/usr/share/icingaweb2/modules'
   $conf_mod_dir                 = "${default_confdir}/enabledModules"
-  $mods                         = []
+  $modules                      = []
 
-  $mods_files                   = {'monitoring' => ['backends','config','instances']}
+  $module_files                   = {'monitoring' => ['backends','config','instances']}
   
   $conf_files                   = ['authentication', 'config', 'resources', 'roles']
   $mysql_packages               = ['php-mysql', 'php-ZendFramework-Db-Adapter-Pdo-Mysql']

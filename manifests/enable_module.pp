@@ -1,7 +1,7 @@
-define icingaweb2::enable_mod {
+define icingaweb2::enable_module {
 
-  $files=$icingaweb2::params::mods_files[$title]
-  $moddir="${icingaweb2::params::default_confdir}/modules/${title}/"
+  $files=$icingaweb2::params::module_files[$title]
+  $moduledir="${icingaweb2::params::default_confdir}/modules/${title}/"
   
   $files_with_path=prefix($files,"${title}/")
   
@@ -11,10 +11,10 @@ define icingaweb2::enable_mod {
     target => "${icingaweb2::params::system_mod_dir}/${title}",
   }
 
-  file {$moddir:
+  file {$moduledir:
     ensure => directory,
   }
 
-  icingaweb2::mod_file {$files_with_path: }
+  icingaweb2::module_file {$files_with_path: }
  
 }
