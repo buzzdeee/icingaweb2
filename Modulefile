@@ -1,0 +1,8 @@
+name    'talamoig-icingaweb2'
+version '0.0.1'
+source 'https://github.com/talamoig/icingaweb2'
+author 'talamoig'
+license 'Apache License, Version 2.0'
+summary 'Icingaweb2 puppet module'
+description 'Puppet module for icingaweb2 front end interface to icinga'
+project_page 'https://github.com/talamoig/icingaweb2'
