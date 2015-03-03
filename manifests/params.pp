@@ -12,6 +12,7 @@ class icingaweb2::params {
   $dbuser                       = 'icinga'
   $dbpasswd                     = 'icinga'
   $dbname                       = 'icinga'
+  $with_repo                    = True
   $default_confdir              = '/etc/icingaweb2'
   $system_mod_dir               = '/usr/share/icingaweb2/modules'
   $conf_mod_dir                 = "${default_confdir}/enabledModules"

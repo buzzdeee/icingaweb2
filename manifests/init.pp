@@ -49,14 +49,16 @@ class icingaweb2 (
   $dbuser      = $icingaweb2::params::dbuser,
   $dbpasswd    = $icingaweb2::params::dbpasswd,
   $dbname      = $icingaweb2::params::dbname,
+  $with_repo   = $icingaweb2::params::with_repo,
   $modules     = $icingaweb2::params::modules
 ) inherits icingaweb2::params {
 
   case $::osfamily {
     RedHat: {
       
-      Class[icingaweb2::package] -> Class[icingaweb2::configure] -> Class[icingaweb2::modules]
-      
+      Class[icingaweb2::yumrepo] -> Class[icingaweb2::package] -> Class[icingaweb2::configure] -> Class[icingaweb2::modules]
+
+      class{ 'icingaweb2::yumrepo': }
       class{ 'icingaweb2::package': }
       class{ 'icingaweb2::configure': }
       class{ 'icingaweb2::modules': }
