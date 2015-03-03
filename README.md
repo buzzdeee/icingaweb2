@@ -15,12 +15,12 @@
 
 ## Overview
 
-The [icingaweb2](http://docs.icinga.org/icinga2/latest/doc/module/icinga2/chapter/getting-started#setting-up-icingaweb2)
-modules allows you to setup an icinga web2 front end.
+The [icinga web 2](http://docs.icinga.org/icinga2/latest/doc/module/icinga2/chapter/getting-started#setting-up-icingaweb2)
+modules allows you to setup an Icinga Web 2 front end.
 
 ## Module Description
 
-This modules installs [icingaweb2] (http://docs.icinga.org/icinga2/latest/doc/module/icinga2/chapter/getting-started#setting-up-icingaweb2)
+This modules installs [icinga web 2] (http://docs.icinga.org/icinga2/latest/doc/module/icinga2/chapter/getting-started#setting-up-icingaweb2)
 front end. It requires to access data generated on a database by an Icinga server backend,
 not provided by this module.
 
@@ -58,7 +58,7 @@ In that case you should install Icinga Web 2 with:
 	with_repo  => False,
    }
 
-Furthermore you will tipically adjust database parameters. An icingaweb2 will need access
+Furthermore you will tipically adjust database parameters. An icinga web 2 will need access
 to two databases:
  
  * the backend database (icinga2), having informations about host checks, services, etc.;
