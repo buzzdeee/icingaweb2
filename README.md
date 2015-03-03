@@ -15,65 +15,84 @@
 
 ## Overview
 
-A one-maybe-two sentence summary of what the module does/what problem it solves.
-This is your 30 second elevator pitch for your module. Consider including
-OS/Puppet version it works with.
+The [icingaweb2](http://docs.icinga.org/icinga2/latest/doc/module/icinga2/chapter/getting-started#setting-up-icingaweb2)
+modules allows you to setup an icinga web2 front end.
 
 ## Module Description
 
-If applicable, this section should have a brief description of the technology
-the module integrates with and what that integration enables. This section
-should answer the questions: "What does this module *do*?" and "Why would I use
-it?"
+This modules installs [icingaweb2] (http://docs.icinga.org/icinga2/latest/doc/module/icinga2/chapter/getting-started#setting-up-icingaweb2)
+front end. It requires to access data generated on a database by an Icinga server backend,
+not provided by this module.
 
-If your module has a range of functionality (installation, configuration,
-management, etc.) this is the time to mention it.
+If you need an Icinga backend you can use [this module](https://github.com/talamoig/icinga).
 
 ## Setup
 
 ### What icingaweb2 affects
 
-* A list of files, packages, services, or operations that the module will alter,
-  impact, or execute on the system it's installed on.
-* This is a great place to stick any warnings.
+* configuration files and directory (`/etc/icingaweb2`)
+* apache configuration (installs `/etc/httpd/conf.d/icingaweb2.conf`)
+* a new yum repository will be installed by default
+
+The yum repository installation can be disabled passing `with_repo => False` to the `icinga` class.
 * Can be in list or paragraph form.
 
-### Setup Requirements **OPTIONAL**
+### Setup Requirements
 
-If your module requires anything extra before setting up (pluginsync enabled,
-etc.), mention it here.
+An Icinga backend server is required, although it does not need to be on the same host, since
+the communication will happen through the database.
 
 ### Beginning with icingaweb2
 
-The very basic steps needed for a user to get the module up and running.
+To install Icinga Web 2 with default parameters 
 
-If your most recent release breaks compatibility or requires particular steps
-for upgrading, you may wish to include an additional section here: Upgrading
-(For an example, see http://forge.puppetlabs.com/puppetlabs/firewall).
+     class {'::icingaweb2': }
 
-## Usage
+In the case you are installing Icinga Web 2 on the same host where is the Icinga2
+server, one of the two classes will fail since they will conflict on the management
+of the repository.
 
-Put the classes, types, and resources for customizing, configuring, and doing
-the fancy stuff with your module here.
+In that case you should install Icinga Web 2 with:
 
-## Reference
+   class{'::icingaweb2':
+	with_repo  => False,
+   }
 
-Here, list the classes, types, providers, facts, etc contained in your module.
-This section should include all of the under-the-hood workings of your module so
-people know what the module is touching on their system but don't need to mess
-with things. (We are working on automating this section!)
+Furthermore you will tipically adjust database parameters. An icingaweb2 will need access
+to two databases:
+ 
+ * the backend database (icinga2), having informations about host checks, services, etc.;
+ * the frontend database (icinga2), where user preferences are stored.
+
+The configuration of both the databases can be passed to the class:
+
+     class { '::icingaweb2':
+     ## backend database
+	 dbhost     => 'icinga-db-server',
+	 dbtype	    => 'mysql',
+	 dbname	    => 'icinga',
+	 dbuser	    => 'icinga',
+	 dbpasswd   => 'icinga',
+	 dbame	    => 'icinga',
+     ## frontend database
+       	dbwebtype   => 'mysql',
+       	dbwebhost   => 'localhost',
+       	dbwebport   => '3306',
+       	dbwebuser   => 'icinga_web',
+       	dbwebpasswd => 'icinga_web',
+       	dbwebname   => 'icinga_web',
+     ##	modules list
+        modules     => ['monitoring']
+     }
+
+Furthermore the `module` parameter contains the list of modules to enable.
+Actually the only available modules are:
+ 
+ * `monitoring`
+ * `setup`, for first installation.
 
 ## Limitations
 
-This is where you list OS compatibility, version compatibility, etc.
-
-## Development
-
-Since your module is awesome, other users will want to play with it. Let them
-know what the ground rules for contributing are.
-
-## Release Notes/Contributors/Etc **Optional**
-
-If you aren't using changelog, put your release notes here (though you should
-consider using changelog). You may also add any additional sections you feel are
-necessary or important to include here. Please use the `## ` header.
+This module has been tested on Scientific Linux 6 and CentOS 6 with
+Puppet 3.1.1 and 3.7.4. It should be compatible with any RedHat 6
+based distribution.
