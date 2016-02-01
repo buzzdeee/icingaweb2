@@ -49,12 +49,12 @@ class icingaweb2::params {
   $conf_mod_dir                 = "${default_confdir}/enabledModules"
   $modules                      = []
 
-  $logtype                      = 'syslog'
-  $loglevel                     = 'ERROR'
-  $logapplication               = 'icingaweb2'
+  $log_type                      = 'syslog'
+  $log_level                     = 'ERROR'
+  $log_application               = 'icingaweb2'
 
-  $prefstore                    = 'db'
-  $prefresource                 = 'icingaweb_db'
+  $pref_store                    = 'db'
+  $pref_resource                 = 'icingaweb_db'
 
   $module_files                   = {'monitoring' => ['backends','config','instances']}
   

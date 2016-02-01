@@ -14,11 +14,11 @@ class icingaweb2::configure (
   $dbpasswd,
   $dbname,
   $sysgroup,
-  $logtype,
-  $loglevel,
-  $logapplication,
-  $prefstore,
-  $prefresource,
+  $log_type,
+  $log_level,
+  $log_application,
+  $pref_store,
+  $pref_resource,
 ) {
 
   file{$icingaweb2::params::default_confdir:

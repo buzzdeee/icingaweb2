@@ -54,6 +54,11 @@ class icingaweb2 (
   $with_repo    = $icingaweb2::params::with_repo,
   $modules      = $icingaweb2::params::modules,
   $sysgroup     = $icingaweb2::params::sysgroup,
+  $log_level    = $icingaweb2::params::log_level,
+  $log_type     = $icingaweb2::params::log_type,
+  $log_application = $icingaweb2::params::log_application,
+  $pref_store = $icingaweb2::params::pref_store,
+  $pref_resource = $icingaweb2::params::pref_resource,
 ) inherits icingaweb2::params {
 
   case $::osfamily {
@@ -64,6 +69,8 @@ class icingaweb2 (
       class{ 'icingaweb2::yumrepo': }
       class{ 'icingaweb2::package': }
       class{ 'icingaweb2::configure':
+        auth_backend   => $auth_backend,
+        auth_resource => $auth_resource,
         dbwebtype   => $dbwebtype,
         dbwebhost   => $dbwebhost,
         dbwebport   => $dbwebport,
@@ -76,6 +83,12 @@ class icingaweb2 (
         dbuser      => $dbuser,
         dbpasswd    => $dbpasswd,
         dbname      => $dbname,
+        sysgroup    => $sysgroup,
+        log_type => $log_type,
+        log_level => $log_level,
+        log_application => $log_application,
+        pref_store => $pref_store,
+        pref_resource => $pref_resource,
       }
       class{ 'icingaweb2::modules': }
     }
@@ -85,6 +98,8 @@ class icingaweb2 (
 
       class{ 'icingaweb2::package': }
       class{ 'icingaweb2::configure':
+        auth_backend   => $auth_backend,
+        auth_resource => $auth_resource,
         dbwebtype   => $dbwebtype,
         dbwebhost   => $dbwebhost,
         dbwebport   => $dbwebport,
@@ -97,6 +112,12 @@ class icingaweb2 (
         dbuser      => $dbuser,
         dbpasswd    => $dbpasswd,
         dbname      => $dbname,
+        sysgroup    => $sysgroup,
+        log_type => $log_type,
+        log_level => $log_level,
+        log_application => $log_application,
+        pref_store => $pref_store,
+        pref_resource => $pref_resource,
       }
       class{ 'icingaweb2::modules': }
     }
