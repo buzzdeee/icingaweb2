@@ -6,7 +6,7 @@ class icingaweb2::package {
     install_options => $icingaweb2::params::package_install_options,
   }
 
-  case $icingaweb2::params::dbwebtype {
+  case $icingaweb2::dbwebtype {
     'mysql': {
       package{$icingaweb2::params::mysql_packages:
         ensure          => installed,

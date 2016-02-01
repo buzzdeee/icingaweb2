@@ -16,7 +16,7 @@ class icingaweb2::params {
       $system_mod_dir          = '/var/www/icinga-web2/modules'
       $package_names           = [ 'icinga-web2', 'php-gd-5.6*' ]
       $package_install_options = '-z'
-      $mysql_packages          = ['php-mysql-5.6*', 'php-pdo_pgsql-5.6*']
+      $mysql_packages          = ['php-mysql-5.6*', 'php-pdo_mysql-5.6*']
       $pgsql_packages          = ['php-pgsql-5.6*', 'php-pdo_pgsql-5.6*']
     }
     default: {
