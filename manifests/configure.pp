@@ -1,5 +1,8 @@
 class icingaweb2::configure {
 
+  file{$icingaweb2::params::default_confdir:
+    ensure => directory
+  }
   file{$icingaweb2::params::conf_mod_dir:
     ensure => directory
   }

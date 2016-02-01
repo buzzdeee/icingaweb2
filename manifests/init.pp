@@ -63,8 +63,16 @@ class icingaweb2 (
       class{ 'icingaweb2::configure': }
       class{ 'icingaweb2::modules': }
     }
+    'OpenBSD': {
+
+      Class[icingaweb2::package] -> Class[icingaweb2::configure] -> Class[icingaweb2::modules]
+
+      class{ 'icingaweb2::package': }
+      class{ 'icingaweb2::configure': }
+      class{ 'icingaweb2::modules': }
+    }
     
-    default: { fail("Currently unavailable for ${osfamily}") }
+    default: { fail("${::module_name} currently unavailable for ${osfamily}") }
   }
   
 }
