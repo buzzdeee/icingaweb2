@@ -1,4 +1,17 @@
-class icingaweb2::configure {
+class icingaweb2::configure (
+  $dbwebtype,
+  $dbwebhost,
+  $dbwebport,
+  $dbwebuser,
+  $dbwebpasswd,
+  $dbwebname,
+  $dbtype,
+  $dbhost,
+  $dbport,
+  $dbuser,
+  $dbpasswd,
+  $dbname,
+) {
 
   file{$icingaweb2::params::default_confdir:
     ensure => directory

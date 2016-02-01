@@ -60,7 +60,20 @@ class icingaweb2 (
 
       class{ 'icingaweb2::yumrepo': }
       class{ 'icingaweb2::package': }
-      class{ 'icingaweb2::configure': }
+      class{ 'icingaweb2::configure':
+        dbwebtype   => $dbwebtype,
+        dbwebhost   => $dbwebhost,
+        dbwebport   => $dbwebport,
+        dbwebuser   => $dbwebuser,
+        dbwebpasswd => $dbwebpasswd,
+        dbwebname   => $dbwebname,
+        dbtype      => $dbtype,
+        dbhost      => $dbhost,
+        dbport      => $dbport,
+        dbuser      => $dbuser,
+        dbpasswd    => $dbpasswd,
+        dbname      => $dbname,
+      }
       class{ 'icingaweb2::modules': }
     }
     'OpenBSD': {
@@ -68,7 +81,20 @@ class icingaweb2 (
       Class[icingaweb2::package] -> Class[icingaweb2::configure] -> Class[icingaweb2::modules]
 
       class{ 'icingaweb2::package': }
-      class{ 'icingaweb2::configure': }
+      class{ 'icingaweb2::configure':
+        dbwebtype   => $dbwebtype,
+        dbwebhost   => $dbwebhost,
+        dbwebport   => $dbwebport,
+        dbwebuser   => $dbwebuser,
+        dbwebpasswd => $dbwebpasswd,
+        dbwebname   => $dbwebname,
+        dbtype      => $dbtype,
+        dbhost      => $dbhost,
+        dbport      => $dbport,
+        dbuser      => $dbuser,
+        dbpasswd    => $dbpasswd,
+        dbname      => $dbname,
+      }
       class{ 'icingaweb2::modules': }
     }
     

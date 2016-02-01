@@ -7,6 +7,8 @@ class icingaweb2::params {
       $system_mod_dir          = '/usr/share/icingaweb2/modules'
       $package_names           = [ 'icingaweb2', 'php-pdo' ]
       $package_install_options = undef
+      $php_packages_ensure     = undef
+      $php_packages_prefix     = undef
       $mysql_packages          = ['php-mysql', 'php-ZendFramework-Db-Adapter-Pdo-Mysql']
       $pgsql_packages          = ['php-pgsql', 'php-ZendFramework-Db-Adapter-Pdo-Pgsql']
     }
@@ -14,10 +16,12 @@ class icingaweb2::params {
       $with_repo               = False
       $default_confdir         = '/var/www/etc/icingaweb2'
       $system_mod_dir          = '/var/www/icinga-web2/modules'
-      $package_names           = [ 'icinga-web2', 'php-gd-5.6*' ]
+      $package_names           = [ 'icinga-web2', 'php-gd' ]
       $package_install_options = '-z'
-      $mysql_packages          = ['php-mysql-5.6*', 'php-pdo_mysql-5.6*']
-      $pgsql_packages          = ['php-pgsql-5.6*', 'php-pdo_pgsql-5.6*']
+      $php_packages_ensure     = '5.6*'
+      $php_packages_prefix     = 'php-'
+      $mysql_packages          = ['php-mysql', 'php-pdo_mysql']
+      $pgsql_packages          = ['php-pgsql', 'php-pdo_pgsql']
     }
     default: {
       fail("${::module_name} does not support osfamily: ${::osfamily}")
