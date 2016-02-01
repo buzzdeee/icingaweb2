@@ -11,6 +11,7 @@ class icingaweb2::params {
       $php_packages_prefix     = undef
       $mysql_packages          = ['php-mysql', 'php-ZendFramework-Db-Adapter-Pdo-Mysql']
       $pgsql_packages          = ['php-pgsql', 'php-ZendFramework-Db-Adapter-Pdo-Pgsql']
+      $sysgroup                = 'root'
     }
     'OpenBSD': {
       $with_repo               = False
@@ -22,11 +23,16 @@ class icingaweb2::params {
       $php_packages_prefix     = 'php-'
       $mysql_packages          = ['php-mysql', 'php-pdo_mysql']
       $pgsql_packages          = ['php-pgsql', 'php-pdo_pgsql']
+      $sysgroup                = '_icingaweb2'
     }
     default: {
       fail("${::module_name} does not support osfamily: ${::osfamily}")
     }
   }
+
+  $auth_backend                 = 'db'
+  $auth_resource                = 'icingaweb_db'
+
   $dbwebtype                    = 'mysql'
   $dbwebhost                    = 'localhost'
   $dbwebport                    = '3306'

@@ -37,20 +37,23 @@
 #
 
 class icingaweb2 (
-  $dbwebtype   = $icingaweb2::params::dbwebtype,
-  $dbwebhost   = $icingaweb2::params::dbwebhost,
-  $dbwebport   = $icingaweb2::params::dbwebport,
-  $dbwebuser   = $icingaweb2::params::dbwebuser,
-  $dbwebpasswd = $icingaweb2::params::dbwebpasswd,
-  $dbwebname   = $icingaweb2::params::dbwebname,
-  $dbtype      = $icingaweb2::params::dbtype,
-  $dbhost      = $icingaweb2::params::dbhost,
-  $dbport      = $icingaweb2::params::dbport,
-  $dbuser      = $icingaweb2::params::dbuser,
-  $dbpasswd    = $icingaweb2::params::dbpasswd,
-  $dbname      = $icingaweb2::params::dbname,
-  $with_repo   = $icingaweb2::params::with_repo,
-  $modules     = $icingaweb2::params::modules
+  $auth_backend = $icingaweb2::params::auth_backend,
+  $auth_resource = $icingaweb2::params::auth_resource,
+  $dbwebtype    = $icingaweb2::params::dbwebtype,
+  $dbwebhost    = $icingaweb2::params::dbwebhost,
+  $dbwebport    = $icingaweb2::params::dbwebport,
+  $dbwebuser    = $icingaweb2::params::dbwebuser,
+  $dbwebpasswd  = $icingaweb2::params::dbwebpasswd,
+  $dbwebname    = $icingaweb2::params::dbwebname,
+  $dbtype       = $icingaweb2::params::dbtype,
+  $dbhost       = $icingaweb2::params::dbhost,
+  $dbport       = $icingaweb2::params::dbport,
+  $dbuser       = $icingaweb2::params::dbuser,
+  $dbpasswd     = $icingaweb2::params::dbpasswd,
+  $dbname       = $icingaweb2::params::dbname,
+  $with_repo    = $icingaweb2::params::with_repo,
+  $modules      = $icingaweb2::params::modules,
+  $sysgroup     = $icingaweb2::params::sysgroup,
 ) inherits icingaweb2::params {
 
   case $::osfamily {
