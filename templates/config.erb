@@ -1,10 +1,9 @@
-
 [logging]
-log                 = "syslog"
-level               = "ERROR"
-application         = "icingaweb2"
+log                 = "<%= @logtype %>"
+level               = "<%= @loglevel %>"
+application         = "<%= @logapplication %>"
 
 
 [preferences]
-store               = "db"
-resource            = "icingaweb_db"
+store               = "<%= @prefstore %>"
+resource            = "<%= @prefresource %>"
