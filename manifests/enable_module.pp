@@ -6,7 +6,7 @@ define icingaweb2::enable_module {
   $files_with_path=prefix($files,"${title}/")
   
   file {$title:
-    ensure => link,
+    ensure => 'link',
     path   => "${icingaweb2::params::conf_mod_dir}/${title}",
     target => "${icingaweb2::params::system_mod_dir}/${title}",
   }

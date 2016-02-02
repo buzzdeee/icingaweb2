@@ -61,6 +61,20 @@ class icingaweb2 (
   $pref_resource = $icingaweb2::params::pref_resource,
   $roles_admin_users = $icingaweb2::params::roles_admin_users,
   $roles_admin_perms = $icingaweb2::params::roles_admin_perms,
+  $show_stacktraces = $icingaweb2::params::show_stacktraces,
+  $config_backend = $icingaweb2::params::config_backend,
+  $config_resource = $icingaweb2::params::config_resource,
+  $ldap_user_class = $icingaweb2::params::ldap_user_class,
+  $ldap_user_filter = $icingaweb2::params::ldap_user_filter,
+  $ldap_user_attribute = $icingaweb2::params::ldap_user_attribute,
+  $ldap_user_base_dn = $icingaweb2::params::ldap_user_base_dn,
+  $group_backend = $icingaweb2::params::group_backend,
+  $group_resource = $icingaweb2::params::group_resource,
+  $ldap_group_class = $icingaweb2::params::ldap_group_class,
+  $ldap_group_filter = $icingaweb2::params::ldap_group_filter,
+  $ldap_group_attribute = $icingaweb2::params::ldap_group_attribute,
+  $ldap_group_member_attribute = $icingaweb2::params::ldap_group_member_attribute,
+  $ldap_group_base_dn = $icingaweb2::params::ldap_group_base_dn,
 ) inherits icingaweb2::params {
 
   case $::osfamily {
@@ -93,6 +107,20 @@ class icingaweb2 (
         pref_resource => $pref_resource,
         roles_admin_users => $roles_admin_users,
         roles_admin_perms => $roles_admin_perms,
+	show_stacktraces => $show_stacktraces,
+        config_backend => $config_backend,
+        config_resource => $config_resource,
+        ldap_user_class => $ldap_user_class,
+        ldap_user_filter => $ldap_user_filter,
+        ldap_user_attribute => $ldap_user_attribute,
+        ldap_user_base_dn => $ldap_user_base_dn,
+        group_backend => $group_backend,
+        group_resource => $group_resource,
+        ldap_group_class => $ldap_group_class,
+        ldap_group_filter => $ldap_group_filter,
+        ldap_group_attribute => $ldap_group_attribute,
+        ldap_group_member_attribute => $ldap_group_member_attribute,
+        ldap_group_base_dn => $ldap_group_member_attribute,
       }
       class{ 'icingaweb2::modules': }
     }
@@ -124,6 +152,20 @@ class icingaweb2 (
         pref_resource => $pref_resource,
         roles_admin_users => $roles_admin_users,
         roles_admin_perms => $roles_admin_perms,
+	show_stacktraces => $show_stacktraces,
+        config_backend => $config_backend,
+        config_resource => $config_resource,
+        ldap_user_class => $ldap_user_class,
+        ldap_user_filter => $ldap_user_filter,
+        ldap_user_attribute => $ldap_user_attribute,
+        ldap_user_base_dn => $ldap_user_base_dn,
+        group_backend => $group_backend,
+        group_resource => $group_resource,
+        ldap_group_class => $ldap_group_class,
+        ldap_group_filter => $ldap_group_filter,
+        ldap_group_attribute => $ldap_group_attribute,
+        ldap_group_member_attribute => $ldap_group_member_attribute,
+        ldap_group_base_dn => $ldap_group_member_attribute,
       }
       class{ 'icingaweb2::modules': }
     }

@@ -53,8 +53,26 @@ class icingaweb2::params {
   $log_level                     = 'ERROR'
   $log_application               = 'icingaweb2'
 
+  $auth_backend                  = 'db'
+  $auth_resource                 = "icingaweb_${auth_backend}"
+  $ldap_user_class               = 'inetOrgPerson'
+  $ldap_user_filter              = undef
+  $ldap_user_attribute           = 'uid'
+  $ldap_user_base_dn             = undef
+  $group_backend                 = 'db'
+  $group_resource                = 'icingaweb_${group_backend}"
+  $ldap_group_class              = 'group'
+  $ldap_group_filter             = undef
+  $ldap_group_attribute          = 'gid'
+  $ldap_group_member_attribute   = 'member'
+  $ldap_group_base_dn            = undef
+
   $pref_store                    = 'db'
-  $pref_resource                 = 'icingaweb_db'
+  $pref_resource                 = "icingaweb_${pref_store}"
+
+  $show_stacktraces              = '0'
+  $config_backend                = 'db'
+  $config_resource               = "icingaweb_${config_backend}"
 
   $roles_admin_users             = 'admin'
   $roles_admin_perms             = '*'
