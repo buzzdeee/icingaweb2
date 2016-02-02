@@ -59,6 +59,8 @@ class icingaweb2 (
   $log_application = $icingaweb2::params::log_application,
   $pref_store = $icingaweb2::params::pref_store,
   $pref_resource = $icingaweb2::params::pref_resource,
+  $roles_admin_users = $icingaweb2::params::roles_admin_users,
+  $roles_admin_perms = $icingaweb2::params::roles_admin_perms,
 ) inherits icingaweb2::params {
 
   case $::osfamily {
@@ -89,6 +91,8 @@ class icingaweb2 (
         log_application => $log_application,
         pref_store => $pref_store,
         pref_resource => $pref_resource,
+        roles_admin_users => $roles_admin_users,
+        roles_admin_perms => $roles_admin_perms,
       }
       class{ 'icingaweb2::modules': }
     }
@@ -118,6 +122,8 @@ class icingaweb2 (
         log_application => $log_application,
         pref_store => $pref_store,
         pref_resource => $pref_resource,
+        roles_admin_users => $roles_admin_users,
+        roles_admin_perms => $roles_admin_perms,
       }
       class{ 'icingaweb2::modules': }
     }

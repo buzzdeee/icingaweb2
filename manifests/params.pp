@@ -56,6 +56,9 @@ class icingaweb2::params {
   $pref_store                    = 'db'
   $pref_resource                 = 'icingaweb_db'
 
+  $roles_admin_users             = 'admin'
+  $roles_admin_perms             = '*'
+
   $module_files                   = {'monitoring' => ['backends','config','instances']}
   
   $conf_files                   = ['authentication', 'config', 'resources', 'roles']
