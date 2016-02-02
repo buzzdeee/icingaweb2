@@ -30,16 +30,16 @@ class icingaweb2::params {
     }
   }
 
+  $mysql_default_port           = '3306'
+  $pgsql_default_port           = '5432'
   $dbwebtype                    = 'mysql'
   $dbwebhost                    = 'localhost'
-  $dbwebport                    = '3306'
   $dbwebuser                    = 'icinga_web'
   $dbwebpasswd                  = 'icinga_web'
   $dbwebname                    = 'icinga_web'
 
   $dbtype                       = 'mysql'
   $dbhost                       = 'localhost'
-  $dbport                       = '3306'
   $dbuser                       = 'icinga'
   $dbpasswd                     = 'icinga'
   $dbname                       = 'icinga'

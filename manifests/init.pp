@@ -41,13 +41,13 @@ class icingaweb2 (
   $auth_resource = $icingaweb2::params::auth_resource,
   $dbwebtype    = $icingaweb2::params::dbwebtype,
   $dbwebhost    = $icingaweb2::params::dbwebhost,
-  $dbwebport    = $icingaweb2::params::dbwebport,
+  $dbwebport    = undef,
   $dbwebuser    = $icingaweb2::params::dbwebuser,
   $dbwebpasswd  = $icingaweb2::params::dbwebpasswd,
   $dbwebname    = $icingaweb2::params::dbwebname,
   $dbtype       = $icingaweb2::params::dbtype,
   $dbhost       = $icingaweb2::params::dbhost,
-  $dbport       = $icingaweb2::params::dbport,
+  $dbport       = undef,
   $dbuser       = $icingaweb2::params::dbuser,
   $dbpasswd     = $icingaweb2::params::dbpasswd,
   $dbname       = $icingaweb2::params::dbname,
@@ -94,19 +94,39 @@ class icingaweb2 (
     }
   }
 
+  if ! $dbwebport {
+    if $dbwebtype == 'mysql' {
+      $real_dbwebport = $icingaweb2::params::mysql_default_port
+    } else {
+      $real_dbwebport = $icingaweb2::params::pgsql_default_port
+    }
+  } else {
+    $real_dbwebport = $dbwebport
+  }
+  if ! $dbport {
+    if $dbtype == 'mysql' {
+      $real_dbport = $icingaweb2::params::mysql_default_port
+    } else {
+      $real_dbport = $icingaweb2::params::pgsql_default_port
+    }
+  } else {
+    $real_dbport = $dbport
+  }
+
+
   class{ 'icingaweb2::package': }
   class{ 'icingaweb2::configure':
     auth_backend   => $auth_backend,
     auth_resource => $auth_resource,
     dbwebtype   => $dbwebtype,
     dbwebhost   => $dbwebhost,
-    dbwebport   => $dbwebport,
+    dbwebport   => $real_dbwebport,
     dbwebuser   => $dbwebuser,
     dbwebpasswd => $dbwebpasswd,
     dbwebname   => $dbwebname,
     dbtype      => $dbtype,
     dbhost      => $dbhost,
-    dbport      => $dbport,
+    dbport      => $real_dbport,
     dbuser      => $dbuser,
     dbpasswd    => $dbpasswd,
     dbname      => $dbname,
@@ -131,7 +151,7 @@ class icingaweb2 (
     ldap_group_filter => $ldap_group_filter,
     ldap_group_attribute => $ldap_group_attribute,
     ldap_group_member_attribute => $ldap_group_member_attribute,
-    ldap_group_base_dn => $ldap_group_member_attribute,
+    ldap_group_base_dn => $ldap_group_base_dn,
     ldap_host => $ldap_host,
     ldap_port => $ldap_port,
     ldap_encryption => $ldap_encryption,
