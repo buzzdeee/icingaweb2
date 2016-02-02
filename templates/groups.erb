@@ -1,7 +1,7 @@
 [icingaweb2]
 backend = "<%= @group_backend %>"
 resource = "<%= @group_resource %>"
-user_backend = "<%= @auth_resource %>"
+user_backend = "icingaweb2"
 <% if @group_backend == 'ldap' %>
 group_class = "<%= @ldap_group_class %>"
 group_filter = "<%= @ldap_group_filter %>"

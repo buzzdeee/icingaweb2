@@ -21,6 +21,9 @@ class icingaweb2::configure (
   $pref_resource,
   $roles_admin_users,
   $roles_admin_perms,
+  $show_stacktraces,
+  $config_backend,
+  $config_resource,
   $ldap_user_class,
   $ldap_user_filter,
   $ldap_user_attribute,
@@ -32,6 +35,12 @@ class icingaweb2::configure (
   $ldap_group_attribute,
   $ldap_group_member_attribute,
   $ldap_group_base_dn,
+  $ldap_host,
+  $ldap_port,
+  $ldap_encryption,
+  $ldap_root_dn,
+  $ldap_bind_dn,
+  $ldap_bind_pw,
 ) {
 
   file{$icingaweb2::params::default_confdir:

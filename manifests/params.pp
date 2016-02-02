@@ -30,9 +30,6 @@ class icingaweb2::params {
     }
   }
 
-  $auth_backend                 = 'db'
-  $auth_resource                = 'icingaweb_db'
-
   $dbwebtype                    = 'mysql'
   $dbwebhost                    = 'localhost'
   $dbwebport                    = '3306'
@@ -60,12 +57,19 @@ class icingaweb2::params {
   $ldap_user_attribute           = 'uid'
   $ldap_user_base_dn             = undef
   $group_backend                 = 'db'
-  $group_resource                = 'icingaweb_${group_backend}"
+  $group_resource                = "icingaweb_${group_backend}"
   $ldap_group_class              = 'group'
   $ldap_group_filter             = undef
   $ldap_group_attribute          = 'gid'
   $ldap_group_member_attribute   = 'member'
   $ldap_group_base_dn            = undef
+
+  $ldap_host                     = 'localhost'
+  $ldap_port                     = '389'
+  $ldap_encryption               = 'none'
+  $ldap_root_dn                  = undef
+  $ldap_bind_dn                  = undef
+  $ldap_bind_pw                  = undef
 
   $pref_store                    = 'db'
   $pref_resource                 = "icingaweb_${pref_store}"
@@ -79,5 +83,4 @@ class icingaweb2::params {
 
   $module_files                   = {'monitoring' => ['backends','config','instances']}
   
-  $conf_files                   = ['authentication', 'config', 'resources', 'roles']
 }

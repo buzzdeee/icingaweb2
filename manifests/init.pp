@@ -75,102 +75,73 @@ class icingaweb2 (
   $ldap_group_attribute = $icingaweb2::params::ldap_group_attribute,
   $ldap_group_member_attribute = $icingaweb2::params::ldap_group_member_attribute,
   $ldap_group_base_dn = $icingaweb2::params::ldap_group_base_dn,
+  $ldap_host = $icingaweb2::params::ldap_host,
+  $ldap_port = $icingaweb2::params::ldap_port,
+  $ldap_encryption = $icingaweb2::params::ldap_encryption,
+  $ldap_root_dn = $icingaweb2::params::ldap_root_dn,
+  $ldap_bind_dn = $icingaweb2::params::ldap_bind_dn,
+  $ldap_bind_pw = $icingaweb2::params::ldap_bind_pw,
 ) inherits icingaweb2::params {
 
   case $::osfamily {
-    RedHat: {
-      
-      Class[icingaweb2::yumrepo] -> Class[icingaweb2::package] -> Class[icingaweb2::configure] -> Class[icingaweb2::modules]
+    'RedHat': {
+      Class[icingaweb2::yumrepo] -> Class[icingaweb2::package]
 
       class{ 'icingaweb2::yumrepo': }
-      class{ 'icingaweb2::package': }
-      class{ 'icingaweb2::configure':
-        auth_backend   => $auth_backend,
-        auth_resource => $auth_resource,
-        dbwebtype   => $dbwebtype,
-        dbwebhost   => $dbwebhost,
-        dbwebport   => $dbwebport,
-        dbwebuser   => $dbwebuser,
-        dbwebpasswd => $dbwebpasswd,
-        dbwebname   => $dbwebname,
-        dbtype      => $dbtype,
-        dbhost      => $dbhost,
-        dbport      => $dbport,
-        dbuser      => $dbuser,
-        dbpasswd    => $dbpasswd,
-        dbname      => $dbname,
-        sysgroup    => $sysgroup,
-        log_type => $log_type,
-        log_level => $log_level,
-        log_application => $log_application,
-        pref_store => $pref_store,
-        pref_resource => $pref_resource,
-        roles_admin_users => $roles_admin_users,
-        roles_admin_perms => $roles_admin_perms,
-	show_stacktraces => $show_stacktraces,
-        config_backend => $config_backend,
-        config_resource => $config_resource,
-        ldap_user_class => $ldap_user_class,
-        ldap_user_filter => $ldap_user_filter,
-        ldap_user_attribute => $ldap_user_attribute,
-        ldap_user_base_dn => $ldap_user_base_dn,
-        group_backend => $group_backend,
-        group_resource => $group_resource,
-        ldap_group_class => $ldap_group_class,
-        ldap_group_filter => $ldap_group_filter,
-        ldap_group_attribute => $ldap_group_attribute,
-        ldap_group_member_attribute => $ldap_group_member_attribute,
-        ldap_group_base_dn => $ldap_group_member_attribute,
-      }
-      class{ 'icingaweb2::modules': }
     }
-    'OpenBSD': {
-
-      Class[icingaweb2::package] -> Class[icingaweb2::configure] -> Class[icingaweb2::modules]
-
-      class{ 'icingaweb2::package': }
-      class{ 'icingaweb2::configure':
-        auth_backend   => $auth_backend,
-        auth_resource => $auth_resource,
-        dbwebtype   => $dbwebtype,
-        dbwebhost   => $dbwebhost,
-        dbwebport   => $dbwebport,
-        dbwebuser   => $dbwebuser,
-        dbwebpasswd => $dbwebpasswd,
-        dbwebname   => $dbwebname,
-        dbtype      => $dbtype,
-        dbhost      => $dbhost,
-        dbport      => $dbport,
-        dbuser      => $dbuser,
-        dbpasswd    => $dbpasswd,
-        dbname      => $dbname,
-        sysgroup    => $sysgroup,
-        log_type => $log_type,
-        log_level => $log_level,
-        log_application => $log_application,
-        pref_store => $pref_store,
-        pref_resource => $pref_resource,
-        roles_admin_users => $roles_admin_users,
-        roles_admin_perms => $roles_admin_perms,
-	show_stacktraces => $show_stacktraces,
-        config_backend => $config_backend,
-        config_resource => $config_resource,
-        ldap_user_class => $ldap_user_class,
-        ldap_user_filter => $ldap_user_filter,
-        ldap_user_attribute => $ldap_user_attribute,
-        ldap_user_base_dn => $ldap_user_base_dn,
-        group_backend => $group_backend,
-        group_resource => $group_resource,
-        ldap_group_class => $ldap_group_class,
-        ldap_group_filter => $ldap_group_filter,
-        ldap_group_attribute => $ldap_group_attribute,
-        ldap_group_member_attribute => $ldap_group_member_attribute,
-        ldap_group_base_dn => $ldap_group_member_attribute,
-      }
-      class{ 'icingaweb2::modules': }
+    default: {
+      # deliberately left empty
     }
-    
-    default: { fail("${::module_name} currently unavailable for ${osfamily}") }
   }
+
+  class{ 'icingaweb2::package': }
+  class{ 'icingaweb2::configure':
+    auth_backend   => $auth_backend,
+    auth_resource => $auth_resource,
+    dbwebtype   => $dbwebtype,
+    dbwebhost   => $dbwebhost,
+    dbwebport   => $dbwebport,
+    dbwebuser   => $dbwebuser,
+    dbwebpasswd => $dbwebpasswd,
+    dbwebname   => $dbwebname,
+    dbtype      => $dbtype,
+    dbhost      => $dbhost,
+    dbport      => $dbport,
+    dbuser      => $dbuser,
+    dbpasswd    => $dbpasswd,
+    dbname      => $dbname,
+    sysgroup    => $sysgroup,
+    log_type => $log_type,
+    log_level => $log_level,
+    log_application => $log_application,
+    pref_store => $pref_store,
+    pref_resource => $pref_resource,
+    roles_admin_users => $roles_admin_users,
+    roles_admin_perms => $roles_admin_perms,
+    show_stacktraces => $show_stacktraces,
+    config_backend => $config_backend,
+    config_resource => $config_resource,
+    ldap_user_class => $ldap_user_class,
+    ldap_user_filter => $ldap_user_filter,
+    ldap_user_attribute => $ldap_user_attribute,
+    ldap_user_base_dn => $ldap_user_base_dn,
+    group_backend => $group_backend,
+    group_resource => $group_resource,
+    ldap_group_class => $ldap_group_class,
+    ldap_group_filter => $ldap_group_filter,
+    ldap_group_attribute => $ldap_group_attribute,
+    ldap_group_member_attribute => $ldap_group_member_attribute,
+    ldap_group_base_dn => $ldap_group_member_attribute,
+    ldap_host => $ldap_host,
+    ldap_port => $ldap_port,
+    ldap_encryption => $ldap_encryption,
+    ldap_root_dn => $ldap_root_dn,
+    ldap_bind_dn => $ldap_bind_dn,
+    ldap_bind_pw => $ldap_bind_pw,
+  }
+  class{ 'icingaweb2::modules': }
   
+  Class[icingaweb2::package]->
+  Class[icingaweb2::configure]->
+  Class[icingaweb2::modules]
 }
