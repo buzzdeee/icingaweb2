@@ -1,10 +1,11 @@
-[icingaweb2]
-backend             = "<%= @auth_backend %>"
-resource            = "<%= @auth_resource %>"
-
-<% if @auth_backend == 'ldap' %>
-user_class = "<%= @ldap_user_class %>"
-filter = "<%= @ldap_user_filter %>"
-user_name_attribute = "<%= @ldap_user_attribute %>"
-base_dn = "<%= @ldap_user_base_dn %>"
+[<%= @title %>]
+backend             = "<%= @backend %>"
+<% if @backend != 'external' %>
+resource            = "<%= @backend_resource %>"
+<% if @backend == 'ldap' %>
+user_class          = "<%= @ldap_user_class %>"
+filter = "<%= @ldap_filter %>"
+user_name_attribute = "<%= @ldap_user_name_attribute %>"
+base_dn             = "<%= @ldap_base_dn %>"
+<% end %>
 <% end %>

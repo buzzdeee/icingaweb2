@@ -50,30 +50,46 @@ class icingaweb2::configure (
     ensure => directory
   }
 
-  file { "${icingaweb2::params::default_confdir}/authentication.ini":
+  concat { "${icingaweb2::params::default_confdir}/authentication.ini":
     owner   => 'root',
     group   => $icingaweb2::params::sysgroup,
     mode    => '0660',
-    content => template('icingaweb2/authentication.erb'),
   }
+  concat::fragment { 'icingaweb2_authentication_ini_header':
+    content => template('icingaweb2/header.erb'),
+    order   => '00',
+    target  => "${icingaweb2::params::default_confdir}/authentication.ini",
+  }
+
   file { "${icingaweb2::params::default_confdir}/config.ini":
     owner   => 'root',
     group   => $icingaweb2::params::sysgroup,
     mode    => '0660',
     content => template('icingaweb2/config.erb'),
   }
-  file { "${icingaweb2::params::default_confdir}/resources.ini":
+
+  concat { "${icingaweb2::params::default_confdir}/resources.ini":
     owner   => 'root',
     group   => $icingaweb2::params::sysgroup,
     mode    => '0660',
-    content => template('icingaweb2/resources.erb'),
   }
-  file { "${icingaweb2::params::default_confdir}/roles.ini":
+  concat::fragment { 'icingaweb2_resources_ini_header':
+    content => template('icingaweb2/header.erb'),
+    order   => '00',
+    target  => "${icingaweb2::params::default_confdir}/resources.ini",
+  }
+
+  concat { "${icingaweb2::params::default_confdir}/roles.ini":
     owner   => 'root',
     group   => $icingaweb2::params::sysgroup,
     mode    => '0660',
-    content => template('icingaweb2/roles.erb'),
   }
+  concat::fragment { 'icingaweb2_roles_ini_header':
+    content => template('icingaweb2/header.erb'),
+    order   => '00',
+    target  => "${icingaweb2::params::default_confdir}/roles.ini",
+  }
+
   file { "${icingaweb2::params::default_confdir}/groups.ini":
     owner   => 'root',
     group   => $icingaweb2::params::sysgroup,

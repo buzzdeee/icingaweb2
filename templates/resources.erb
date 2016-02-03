@@ -1,32 +1,21 @@
-[icingaweb_db]
-type                = "db"
-db                  = "<%= @dbwebtype %>"
-host                = "<%= @dbwebhost %>"
-port                = "<%= @dbwebport %>"
-dbname              = "<%= @dbwebname %>"
-username            = "<%= @dbwebuser %>"
-password            = "<%= @dbwebpasswd %>"
-charset = "UTF-8"
-persistent = "0"
-
-<% if @ldap_root_dn %>
-[icingaweb_ldap]
-type = "ldap"
-hostname = "<%= @ldap_host %>"
-port = "<%= @ldap_port %>"
-encryption = "<%= @ldap_encryption %>"
-root_dn = "<%= @ldap_root_dn %>"
-bind_dn = "<%= @ldap_bind_dn %>"
-bind_pw = "<%= @ldap_bind_pw %>"
+[<%= @title %>]
+type       = "<%= @resourcetype %>"
+port       = "<%= @real_port %>"
+<% if @resourcetype == 'db' %>
+db         = "<%= @dbtype %>"
+host       = "<%= @host %>"
+dbname     = "<%= @dbname %>"
+username   = "<%= @dbuser %>"
+password   = "<%= @dbpassword %>"
+<% if @dbtype == 'pgsql' %>
+charset    = "<%= @charset %>"
+persistent = "<%= @persistent %>"
 <% end %>
-
-[icinga_ido]
-type                = "db"
-db                  = "<%= @dbtype %>"
-host                = "<%= @dbhost %>"
-port                = "<%= @dbport %>"
-dbname              = "<%= @dbname %>"
-username            = "<%= @dbuser %>"
-password            = "<%= @dbpasswd %>"
-charset = "UTF-8"
-persistent = "0"
+<% end %>
+<% if @resourcetype == 'ldap' or @resourcetype == 'msldap' %>
+hostname   = "<%= @host %>"
+encryption = "<%= @encryption %>"
+root_dn    = "<%= @ldap_root_dn %>"
+bind_dn    = "<%= @ldap_bind_dn %>"
+bind_pw    = "<%= @ldap_bind_pw %>"
+<% end %>

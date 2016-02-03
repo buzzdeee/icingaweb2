@@ -94,26 +94,6 @@ class icingaweb2 (
     }
   }
 
-  if ! $dbwebport {
-    if $dbwebtype == 'mysql' {
-      $real_dbwebport = $icingaweb2::params::mysql_default_port
-    } else {
-      $real_dbwebport = $icingaweb2::params::pgsql_default_port
-    }
-  } else {
-    $real_dbwebport = $dbwebport
-  }
-  if ! $dbport {
-    if $dbtype == 'mysql' {
-      $real_dbport = $icingaweb2::params::mysql_default_port
-    } else {
-      $real_dbport = $icingaweb2::params::pgsql_default_port
-    }
-  } else {
-    $real_dbport = $dbport
-  }
-
-
   class{ 'icingaweb2::package': }
   class{ 'icingaweb2::configure':
     auth_backend   => $auth_backend,
