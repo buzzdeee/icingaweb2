@@ -1,11 +1,11 @@
 [<%= @title %>]
 backend             = "<%= @backend %>"
-<% if @backend != 'external' %>
+<% if @backend != 'external' -%>
 resource            = "<%= @backend_resource %>"
-<% if @backend == 'ldap' %>
+<% if @backend == 'ldap' -%>
 user_class          = "<%= @ldap_user_class %>"
 filter = "<%= @ldap_filter %>"
 user_name_attribute = "<%= @ldap_user_name_attribute %>"
 base_dn             = "<%= @ldap_base_dn %>"
-<% end %>
-<% end %>
+<% end -%>
+<% end -%>

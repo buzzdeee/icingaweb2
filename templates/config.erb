@@ -12,5 +12,7 @@ application         = "<%= @log_application %>"
 
 [preferences]
 store               = "<%= @pref_store %>"
+<% if @pref_store == 'db' %>
 resource            = "<%= @pref_resource %>"
+<% end %>
 
