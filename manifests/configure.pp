@@ -45,21 +45,21 @@ class icingaweb2::configure (
 ) {
 
   validate_re($pref_store, ['db', 'ini'])
-  if $pref_store == 'db' {
-    unless defined(Icingaweb2::Resource[$pref_resource]) {
-      fail("${::module_name} preferences db resource specified in \$pref_resource ${pref_resource} not found in catalog")
-    }
-  }
+#  if $pref_store == 'db' {
+#    unless defined(Icingaweb2::Resource[$pref_resource]) {
+#      fail("${::module_name} preferences db resource specified in \$pref_resource ${pref_resource} not found in catalog")
+#    }
+#  }
 
   validate_string($group_backend)
   validate_string($group_resource)
   validate_string($group_user_backend)
-  unless defined(Icingaweb2::Resource[$group_resource]) {
-    fail("${::module_name} group resource specified in \$group_resource ${group_resource} not found in catalog")
-  }
-  unless defined(Icingaweb2::Authentication[$group_user_backend]) {
-    fail("${::module_name} user authentication backend specified in \$group_user_backend ${group_user_backend} not found in catalog")
-  }
+  #unless defined(Icingaweb2::Resource[$group_resource]) {
+  #  fail("${::module_name} group resource specified in \$group_resource ${group_resource} not found in catalog")
+  #}
+  #unless defined(Icingaweb2::Authentication[$group_user_backend]) {
+  #  fail("${::module_name} user authentication backend specified in \$group_user_backend ${group_user_backend} not found in catalog")
+  #}
 
   file{$icingaweb2::params::default_confdir:
     ensure => directory
@@ -114,4 +114,11 @@ class icingaweb2::configure (
     mode    => '0660',
     content => template('icingaweb2/groups.erb'),
   }
+
+  Icingaweb2::Resource <| |> ->
+  Icingaweb2::Authentication <| |> ->
+  Icingaweb2::Role <| |> ->
+  File["${icingaweb2::params::default_confdir}/config.ini"] ->
+  File["${icingaweb2::params::default_confdir}/groups.ini"]
+
 }
