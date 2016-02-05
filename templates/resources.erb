@@ -1,9 +1,9 @@
 [<%= @title %>]
 type        = "<%= @resourcetype %>"
-<%= if @resourcetype == 'ssh' -%>
+<% if @resourcetype == 'ssh' -%>
 user        = "<%= @user %>"
 private_key = "%= @private_key %>"
-<%= else -%>
+<% else -%>
 port        = "<%= @real_port %>"
   <%- if @resourcetype == 'db' -%>
 db          = "<%= @dbtype %>"

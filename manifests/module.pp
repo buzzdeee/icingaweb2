@@ -1,17 +1,17 @@
 define icingaweb2::module (
-  $params_hash = undef,
+  $params = undef,
 ) {
 
-  require icingaweb2::modules
+  require icingaweb2::configure
 
   unless $title in keys($::icingaweb2::params::module_files) {
     fail("${::module_name}: unsupported module: ${title}")
   }
 
   if $title == 'monitoring' {
-    require_hash($params[$config])
-    require_hash($params[$commandtransports])
-    require_hash($params[$backends])
+    validate_hash($params['config'])
+    validate_hash($params['commandtransports'])
+    validate_hash($params['backends'])
   }
 
   file {"icingaweb2_module_link_${title}":

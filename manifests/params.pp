@@ -16,7 +16,7 @@ class icingaweb2::params {
     'OpenBSD': {
       $with_repo               = False
       $default_confdir         = '/var/www/etc/icingaweb2'
-      $system_mod_dir          = '/var/www/icinga-web2/modules'
+      $system_mod_dir          = '/icinga-web2/modules'
       $package_names           = [ 'icinga-web2', 'php-gd' ]
       $package_install_options = '-z'
       $php_packages_ensure     = '5.6*'
@@ -44,7 +44,6 @@ class icingaweb2::params {
   $dbpasswd                     = 'icinga'
   $dbname                       = 'icinga'
   $conf_mod_dir                 = "${default_confdir}/enabledModules"
-  $modules                      = []
 
   $log_type                      = 'syslog'
   $log_level                     = 'ERROR'

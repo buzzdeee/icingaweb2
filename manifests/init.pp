@@ -38,7 +38,6 @@
 
 class icingaweb2 (
   $with_repo    = $icingaweb2::params::with_repo,
-  $modules      = $icingaweb2::params::modules,
   $sysgroup     = $icingaweb2::params::sysgroup,
   $log_level    = $icingaweb2::params::log_level,
   $log_type     = $icingaweb2::params::log_type,
@@ -91,9 +90,7 @@ class icingaweb2 (
     ldap_group_member_attribute => $ldap_group_member_attribute,
     ldap_group_base_dn => $ldap_group_base_dn,
   }
-  class{ 'icingaweb2::modules': }
   
   Class[icingaweb2::package]->
-  Class[icingaweb2::configure]->
-  Class[icingaweb2::modules]
+  Class[icingaweb2::configure]
 }
