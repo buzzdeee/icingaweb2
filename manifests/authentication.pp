@@ -19,11 +19,9 @@ define icingaweb2::authentication (
 
   if $backend != 'external' and ! $backend_resource {
     fail("${::module_name} authentication backend ${backend} requires to set the \$backend_resource parameter")
-  }
-
-  validate_string($backend_resource)
-  unless defined(Icingaweb2::Resource[$backend_resource]) {
-    fail("${::module_name} ${title}: configured backend_resource ${backend_resource} not found in catalog")
+  } else {
+    validate_string($backend_resource)
+    $auth_require = [ Icingaweb2::Resource[$backend_resource] ]
   }
 
   validate_string($ldap_user_class)
@@ -35,5 +33,6 @@ define icingaweb2::authentication (
     content => template('icingaweb2/authentication.erb'),
     order   => $order,
     target  => "${icingaweb2::params::default_confdir}/authentication.ini",
+    require => $auth_require,
   }
 }

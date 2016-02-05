@@ -44,22 +44,21 @@ class icingaweb2::configure (
 #  $ldap_bind_pw,
 ) {
 
-  validate_re($pref_store, ['db', 'ini'])
-#  if $pref_store == 'db' {
-#    unless defined(Icingaweb2::Resource[$pref_resource]) {
-#      fail("${::module_name} preferences db resource specified in \$pref_resource ${pref_resource} not found in catalog")
-#    }
-#  }
 
+  # Some validation and sanity checks
   validate_string($group_backend)
   validate_string($group_resource)
   validate_string($group_user_backend)
-  #unless defined(Icingaweb2::Resource[$group_resource]) {
-  #  fail("${::module_name} group resource specified in \$group_resource ${group_resource} not found in catalog")
-  #}
-  #unless defined(Icingaweb2::Authentication[$group_user_backend]) {
-  #  fail("${::module_name} user authentication backend specified in \$group_user_backend ${group_user_backend} not found in catalog")
-  #}
+  validate_re($pref_store, ['db', 'ini'])
+  if $pref_store == 'db' and ! $pref_resource {
+    fail ("${::module_name}: configuration store 'db' requires \$pref_source to be set")
+  }
+  if $pref_resource {
+    $config_require = [ Icingaweb2::Resource[$config_resource],
+                        Icingaweb2::Resource[$pref_resource], ]
+  } else {
+    $config_require = [ Icingaweb2::Resource[$config_resource], ]
+  }
 
   file{$icingaweb2::params::default_confdir:
     ensure => directory
@@ -84,6 +83,7 @@ class icingaweb2::configure (
     group   => $icingaweb2::params::sysgroup,
     mode    => '0660',
     content => template('icingaweb2/config.erb'),
+    require => $config_require,
   }
 
   concat { "${icingaweb2::params::default_confdir}/resources.ini":
@@ -113,6 +113,8 @@ class icingaweb2::configure (
     group   => $icingaweb2::params::sysgroup,
     mode    => '0660',
     content => template('icingaweb2/groups.erb'),
+    require => [ Icingaweb2::Resource[$group_resource],
+                Icingaweb2::Authentication[$group_user_backend] ],
   }
 
   Icingaweb2::Resource <| |> ->
