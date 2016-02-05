@@ -1,3 +1,5 @@
+# this defined type takes care to create resource
+# entries in resources.ini
 define icingaweb2::resource (
   $resourcetype,
   $order = 10,
@@ -5,27 +7,28 @@ define icingaweb2::resource (
   $host = 'localhost',
   $port = undef,
   $dbname = undef,
-  $dbuser = undef,
-  $dbpassword = undef,
+  $user = undef,
+  $password = undef,
   $charset = 'UTF-8',
   $persistent = '0',
   $encryption = undef,
   $root_dn = undef,
   $bind_dn = undef,
   $bind_pw = undef,
+  $private_key = undef,
 ) {
 
   require icingaweb2
 
-  validate_re($resourcetype, [ 'db', 'ldap', 'msldap', ])
+  validate_re($resourcetype, [ 'db', 'ldap', 'msldap', 'ssh', ])
 
   case $resourcetype {
     'db': {
       validate_re($dbtype, [ 'mysql', 'pgsql', ])
       validate_string($host)
       validate_string($dbname)
-      validate_string($dbuser)
-      validate_string($dbpassword)
+      validate_string($user)
+      validate_string($password)
       validate_string($charset)
       validate_re($persistent, ['0', '1'])
       if ! $port {
@@ -54,6 +57,10 @@ define icingaweb2::resource (
     }
     'msldap': {
 
+    }
+    'ssh': {
+      validate_absolute_path($private_key)
+      validate_string($string)
     }
     default: {
       # cannot end up here, validate_re takes care already

@@ -1,21 +1,26 @@
 [<%= @title %>]
-type       = "<%= @resourcetype %>"
-port       = "<%= @real_port %>"
-<% if @resourcetype == 'db' %>
-db         = "<%= @dbtype %>"
-host       = "<%= @host %>"
-dbname     = "<%= @dbname %>"
-username   = "<%= @dbuser %>"
-password   = "<%= @dbpassword %>"
-<% if @dbtype == 'pgsql' %>
-charset    = "<%= @charset %>"
-persistent = "<%= @persistent %>"
-<% end %>
-<% end %>
-<% if @resourcetype == 'ldap' or @resourcetype == 'msldap' %>
-hostname   = "<%= @host %>"
-encryption = "<%= @encryption %>"
-root_dn    = "<%= @ldap_root_dn %>"
-bind_dn    = "<%= @ldap_bind_dn %>"
-bind_pw    = "<%= @ldap_bind_pw %>"
-<% end %>
+type        = "<%= @resourcetype %>"
+<%= if @resourcetype == 'ssh' -%>
+user        = "<%= @user %>"
+private_key = "%= @private_key %>"
+<%= else -%>
+port        = "<%= @real_port %>"
+  <%- if @resourcetype == 'db' -%>
+db          = "<%= @dbtype %>"
+host        = "<%= @host %>"
+dbname      = "<%= @dbname %>"
+username    = "<%= @user %>"
+password    = "<%= @password %>"
+    <%- if @dbtype == 'pgsql' -%>
+charset     = "<%= @charset %>"
+persistent  = "<%= @persistent %>"
+    <%- end -%>
+  <%- end -%>
+  <%- if @resourcetype == 'ldap' or @resourcetype == 'msldap' -%>
+hostname    = "<%= @host %>"
+encryption  = "<%= @encryption %>"
+root_dn     = "<%= @ldap_root_dn %>"
+bind_dn     = "<%= @ldap_bind_dn %>"
+bind_pw     = "<%= @ldap_bind_pw %>"
+  <%- end -%>
+<% end -%>
