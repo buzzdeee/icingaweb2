@@ -27,7 +27,7 @@ define icingaweb2::authentication (
   validate_string($ldap_user_class)
   validate_string($ldap_filter)
   validate_string($ldap_user_name_attribute)
-  validate_string($ldap_user_base_dn)
+  validate_string($ldap_base_dn)
 
   concat::fragment { "icingaweb2_authentication_${title}":
     content => template('icingaweb2/authentication.erb'),

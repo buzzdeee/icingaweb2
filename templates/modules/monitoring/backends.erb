@@ -1,5 +1,4 @@
-; DO NOT EDIT: This file is managed via Puppet
+[<%= @key %>]
+type                = "<%= @values['backend_type'] %>"
+resource            = "<%= @values['backend_resource'] %>"
 
-[icinga]
-type                = "<%= @mod_monitoring_backend_type %>"
-resource            = "<%= @mod_monitoring_backend_resource %>"

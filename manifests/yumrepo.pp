@@ -8,5 +8,5 @@ class icingaweb2::yumrepo {
       gpgcheck => '1',
       gpgkey => 'http://packages.icinga.org/icinga.key',
     }
-  } 
+  }
 }
