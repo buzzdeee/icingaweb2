@@ -20,13 +20,17 @@ define icingaweb2::module (
     target => "${icingaweb2::params::system_mod_dir}/${title}",
   }
 
-  unless $params {
+  if $params {
+    file { "${icingaweb2::params::default_confdir}/modules/${title}":
+      ensure => 'directory',
+    }
     $::icingaweb2::params::module_files[$title].each |$file| {
       concat {"icingaweb2_module_${title}_${file}":
         owner   => 'root',
         group   => $icingaweb2::params::sysgroup,
         mode    => '0660',
-        path    => "${icingaweb2::params::default_confdir}/modules/{$title}/${title}.ini",
+        path    => "${icingaweb2::params::default_confdir}/modules/${title}/${file}.ini",
+        require => File["${icingaweb2::params::default_confdir}/modules/${title}"],
       }
       concat::fragment { "icingaweb2_module_${title}_${file}_ini_header":
         content => template('icingaweb2/header.erb'),
@@ -35,7 +39,7 @@ define icingaweb2::module (
       }
       $params[$file].each |$key, $values| {
         concat::fragment { "icingaweb2_module_${title}_${file}_${key}":
-          content => template('icingaweb2/modules/${title}/${file}.erb'),
+          content => template("icingaweb2/modules/${title}/${file}.erb"),
           order   => '10',
           target  => "icingaweb2_module_${title}_${file}",
         }

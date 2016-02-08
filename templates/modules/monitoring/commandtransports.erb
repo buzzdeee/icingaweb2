@@ -1,16 +1,17 @@
 [<%= @key %>]
 transport = "<%= @values['type'] %>"
 path      = "<%= @values['path'] %>"
-<%= if @values['instance'] -%>"
+<% if @values['instance'] -%>"
 instance  = "<%= @values['instance'] %>"
 <% end -%>
-<%= if @type == 'remote' -%>
+<% if @type == 'remote' -%>
 host      = "<%= @values['host'] %>"
 user      = "<%= @values['user'] %>"
-<%= if @values['port'] -%>
+<% if @values['port'] -%>
 port      = "<%= @values['port'] %>"
 <% end -%>
-<%= if @values['resource'] -%>
+<% if @values['resource'] -%>
 resource  = "<%= @values['resource'] %>"
+<% end -%>
 <% end -%>
 
