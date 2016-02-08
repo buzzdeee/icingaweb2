@@ -34,7 +34,7 @@ class icingaweb2::configure (
     $config_require = [ Icingaweb2::Resource[$config_resource], ]
   }
 
-  file{$icingaweb2::params::default_confdir:
+  common::mkdir_p{$icingaweb2::params::default_confdir:
     ensure => directory
   }
   file{$icingaweb2::params::conf_mod_dir:
