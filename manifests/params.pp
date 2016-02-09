@@ -19,7 +19,7 @@ class icingaweb2::params {
       $system_mod_dir          = '/icinga-web2/modules'
       $package_names           = [ 'icinga-web2', 'php-gd' ]
       $package_install_options = '-z'
-      $php_packages_ensure     = '5.6*'
+      $php_packages_ensure     = '5.6.18'
       $php_packages_prefix     = 'php-'
       $mysql_packages          = ['php-mysql', 'php-pdo_mysql']
       $pgsql_packages          = ['php-pgsql', 'php-pdo_pgsql']
