@@ -19,8 +19,8 @@ persistent  = "<%= @persistent %>"
   <%- if @resourcetype == 'ldap' or @resourcetype == 'msldap' -%>
 hostname    = "<%= @host %>"
 encryption  = "<%= @encryption %>"
-root_dn     = "<%= @ldap_root_dn %>"
-bind_dn     = "<%= @ldap_bind_dn %>"
-bind_pw     = "<%= @ldap_bind_pw %>"
+root_dn     = "<%= @root_dn %>"
+bind_dn     = "<%= @bind_dn %>"
+bind_pw     = "<%= @bind_pw %>"
   <%- end -%>
 <% end -%>
