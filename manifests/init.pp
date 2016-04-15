@@ -52,6 +52,7 @@ class icingaweb2 (
   $group_backend = $icingaweb2::params::group_backend,
   $group_resource = $icingaweb2::params::group_resource,
   $group_user_backend = undef,
+  $dbwebtype = $icingaweb2::params::dbwebtype,
   $ldap_group_class = $icingaweb2::params::ldap_group_class,
   $ldap_group_filter = $icingaweb2::params::ldap_group_filter,
   $ldap_group_attribute = $icingaweb2::params::ldap_group_attribute,
