@@ -58,6 +58,7 @@ class icingaweb2 (
   $ldap_group_attribute = $icingaweb2::params::ldap_group_attribute,
   $ldap_group_member_attribute = $icingaweb2::params::ldap_group_member_attribute,
   $ldap_group_base_dn = $icingaweb2::params::ldap_group_base_dn,
+  $php_packages_ensure = $icingaweb2::params::php_packages_ensure,
 ) inherits icingaweb2::params {
 
   case $::osfamily {
