@@ -4,7 +4,7 @@ define icingaweb2::resource (
   $resourcetype,
   $order = 10,
   $dbtype = undef,
-  $host = 'localhost',
+  $host = '127.0.0.1',
   $port = undef,
   $dbname = undef,
   $user = undef,
