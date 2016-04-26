@@ -17,7 +17,7 @@ class icingaweb2::params {
       $with_repo               = False
       $default_confdir         = '/var/www/etc/icingaweb2'
       $system_mod_dir          = '/icinga-web2/modules'
-      $package_names           = [ 'icinga-web2', 'php-gd' ]
+      $package_names           = [ 'icinga-web2', ]
       $package_install_options = '-z'
       $php_packages_ensure     = '5.6.20'
       $php_packages_prefix     = 'php-'
