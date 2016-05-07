@@ -35,13 +35,13 @@ define icingaweb2::module (
       concat::fragment { "icingaweb2_module_${title}_${file}_ini_header":
         content => template('icingaweb2/header.erb'),
         order   => '00',
-        target  => "icingaweb2_module_${title}_${file}",
+        target  => "${icingaweb2::params::default_confdir}/modules/${title}/${file}.ini",
       }
       $params[$file].each |$key, $values| {
         concat::fragment { "icingaweb2_module_${title}_${file}_${key}":
           content => template("icingaweb2/modules/${title}/${file}.erb"),
           order   => '10',
-          target  => "icingaweb2_module_${title}_${file}",
+          target  => "${icingaweb2::params::default_confdir}/modules/${title}/${file}.ini",
         }
       }
     }
