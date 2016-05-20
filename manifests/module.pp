@@ -1,4 +1,5 @@
 define icingaweb2::module (
+  $git_url = undef,
   $params = undef,
 ) {
 
@@ -18,6 +19,16 @@ define icingaweb2::module (
     ensure => 'link',
     path   => "${icingaweb2::params::conf_mod_dir}/${title}",
     target => "${icingaweb2::params::system_mod_dir}/${title}",
+  }
+
+  # This is an external module, download it with vcsrepo
+  # module and install:
+  if $git_url {
+    vcsrepo { '/var/www/icinga-web2/modules/pnp':
+      ensure   => 'present',
+      provider => 'git',
+      source   => $git_url,
+    }
   }
 
   if $params {

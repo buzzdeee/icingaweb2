@@ -80,7 +80,8 @@ class icingaweb2::params {
   $roles_admin_users             = 'admin'
   $roles_admin_perms             = '*'
 
-  $module_files                  = { 'monitoring' => ['backends','config','commandtransports'],
+  $module_files                  = { 'monitoring' => [ 'backends', 'config', 'commandtransports' ],
+                                     'pnp' => [ 'config' ],
                                      'doc' => [],
                                      'iframe' => [],
                                    }
