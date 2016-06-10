@@ -34,7 +34,7 @@ If you need an Icinga backend you can use [this module](https://github.com/talam
 * apache configuration (installs `/etc/httpd/conf.d/icingaweb2.conf`)
 * a new yum repository will be installed by default
 
-The yum repository installation can be disabled passing `with_repo => False` to the `icinga` class.
+The yum repository installation can be disabled passing `with_repo => false` to the `icinga` class.
 * Can be in list or paragraph form.
 
 ### Setup Requirements
@@ -55,7 +55,7 @@ of the repository.
 In that case you should install Icinga Web 2 with:
 
    class{'::icingaweb2':
-	with_repo  => False,
+	with_repo  => false,
    }
 
 Furthermore you will tipically adjust database parameters. An icinga web 2 will need access

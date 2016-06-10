@@ -2,7 +2,7 @@
 class icingaweb2::params {
   case $::osfamily {
     'RedHat': {
-      $with_repo               = True
+      $with_repo               = true
       $default_confdir         = '/etc/icingaweb2'
       $system_mod_dir          = '/usr/share/icingaweb2/modules'
       $package_names           = [ 'icingaweb2', 'php-pdo' ]
@@ -14,7 +14,7 @@ class icingaweb2::params {
       $sysgroup                = 'root'
     }
     'OpenBSD': {
-      $with_repo               = False
+      $with_repo               = false
       $default_confdir         = '/var/www/etc/icingaweb2'
       $system_mod_dir          = '/icinga-web2/modules'
       $package_names           = [ 'icinga-web2', ]
