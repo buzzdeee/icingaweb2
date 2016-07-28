@@ -84,6 +84,7 @@ class icingaweb2::params {
                                      'pnp' => [ 'config' ],
                                      'doc' => [],
                                      'iframe' => [],
+                                     'businessprocess' => [],
                                    }
   
 }

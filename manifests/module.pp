@@ -24,7 +24,7 @@ define icingaweb2::module (
   # This is an external module, download it with vcsrepo
   # module and install:
   if $git_url {
-    vcsrepo { '/var/www/icinga-web2/modules/pnp':
+    vcsrepo { "/var/www/icinga-web2/modules/${title}":
       ensure   => 'present',
       provider => 'git',
       source   => $git_url,
@@ -32,27 +32,41 @@ define icingaweb2::module (
   }
 
   if $params {
-    file { "${icingaweb2::params::default_confdir}/modules/${title}":
-      ensure => 'directory',
-    }
-    $::icingaweb2::params::module_files[$title].each |$file| {
-      concat {"icingaweb2_module_${title}_${file}":
-        owner   => 'root',
-        group   => $icingaweb2::params::sysgroup,
-        mode    => '0660',
-        path    => "${icingaweb2::params::default_confdir}/modules/${title}/${file}.ini",
-        require => File["${icingaweb2::params::default_confdir}/modules/${title}"],
+    if $title == 'businessprocess' {
+      file { "${icingaweb2::params::default_confdir}/modules/${title}":
+        ensure => 'directory',
       }
-      concat::fragment { "icingaweb2_module_${title}_${file}_ini_header":
-        content => template('icingaweb2/header.erb'),
-        order   => '00',
-        target  => "icingaweb2_module_${title}_${file}",
+      file { "${icingaweb2::params::default_confdir}/modules/${title}/processes":
+        ensure => 'directory',
       }
-      $params[$file].each |$key, $values| {
-        concat::fragment { "icingaweb2_module_${title}_${file}_${key}":
-          content => template("icingaweb2/modules/${title}/${file}.erb"),
-          order   => '10',
+      $params.each |String $process, Hash $values| {
+        file { "${icingaweb2::params::default_confdir}/modules/${title}/processes/${process}.conf":
+          content => template('icingaweb2/businessprocess.erb')
+        }
+      }
+    } else {
+      file { "${icingaweb2::params::default_confdir}/modules/${title}":
+        ensure => 'directory',
+      }
+      $::icingaweb2::params::module_files[$title].each |$file| {
+        concat {"icingaweb2_module_${title}_${file}":
+          owner   => 'root',
+          group   => $icingaweb2::params::sysgroup,
+          mode    => '0660',
+          path    => "${icingaweb2::params::default_confdir}/modules/${title}/${file}.ini",
+          require => File["${icingaweb2::params::default_confdir}/modules/${title}"],
+        }
+        concat::fragment { "icingaweb2_module_${title}_${file}_ini_header":
+          content => template('icingaweb2/header.erb'),
+          order   => '00',
           target  => "icingaweb2_module_${title}_${file}",
+        }
+        $params[$file].each |$key, $values| {
+          concat::fragment { "icingaweb2_module_${title}_${file}_${key}":
+            content => template("icingaweb2/modules/${title}/${file}.erb"),
+            order   => '10',
+            target  => "icingaweb2_module_${title}_${file}",
+          }
         }
       }
     }
