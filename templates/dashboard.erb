@@ -1,0 +1,8 @@
+[<%= @dashboard %>]
+title = "<%= @dashboard %>"
+
+<% @dashlets.each do |dashlet, info| -%>
+[<%= @dashboard %>.<%= dashlet %>]
+url = "<%= info['url'] %>"
+title = "<%= dashlet %>"
+<% end %>
