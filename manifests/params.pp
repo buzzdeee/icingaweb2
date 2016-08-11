@@ -5,6 +5,7 @@ class icingaweb2::params {
       $with_repo               = true
       $default_confdir         = '/etc/icingaweb2'
       $system_mod_dir          = '/usr/share/icingaweb2/modules'
+      $system_public_dir       = '/usr/share/icingaweb2/public'
       $package_names           = [ 'icingaweb2', 'php-pdo' ]
       $package_install_options = undef
       $php_packages_ensure     = undef
@@ -17,6 +18,7 @@ class icingaweb2::params {
       $with_repo               = false
       $default_confdir         = '/var/www/etc/icingaweb2'
       $system_mod_dir          = '/icinga-web2/modules'
+      $system_public_dir       = '/var/www/icinga-web2/public'
       $package_names           = [ 'icinga-web2', ]
       $package_install_options = '-z'
       $php_packages_ensure     = '5.6.20'
