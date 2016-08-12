@@ -84,6 +84,7 @@ class icingaweb2::params {
 
   $module_files                  = { 'monitoring' => [ 'backends', 'config', 'commandtransports' ],
                                      'pnp' => [ 'config' ],
+                                     'nagvis' => [ 'config' ],
                                      'generictts' => [ 'config' ],
                                      'doc' => [],
                                      'iframe' => [],
