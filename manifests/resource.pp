@@ -67,10 +67,6 @@ define icingaweb2::resource (
     }
   }
 
-  validate_string($ldap_user_class)
-  validate_string($ldap_user_name_attribute)
-  validate_string($ldap_filter)
-
   concat::fragment { "icingaweb2_resource_${title}":
     content => template('icingaweb2/resources.erb'),
     order   => $order,
