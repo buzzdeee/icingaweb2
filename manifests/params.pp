@@ -89,6 +89,7 @@ class icingaweb2::params {
                                      'doc' => [],
                                      'iframe' => [],
                                      'businessprocess' => [],
+                                     'cube' => [],
                                    }
   
 }
