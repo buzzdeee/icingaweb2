@@ -91,7 +91,7 @@ class icingaweb2::params {
                                      'businessprocess' => [],
                                      'cube' => [],
                                      'director' => [ 'config' ],
-                                     'fileshipper' => [],
+                                     'fileshipper' => [ 'imports' ],
                                    }
   
 }
