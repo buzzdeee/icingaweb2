@@ -90,6 +90,7 @@ class icingaweb2::params {
                                      'iframe' => [],
                                      'businessprocess' => [],
                                      'cube' => [],
+                                     'director' => [ 'config' ],
                                    }
   
 }

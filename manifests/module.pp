@@ -1,5 +1,6 @@
 define icingaweb2::module (
   $git_url = undef,
+  $package_name = undef,
   $params = undef,
 ) {
 
@@ -7,6 +8,10 @@ define icingaweb2::module (
 
   unless $title in keys($::icingaweb2::params::module_files) {
     fail("${::module_name}: unsupported module: ${title}")
+  }
+
+  if $git_url and $package_name {
+    fail("${::module_name}: module ${name} has 'git_url' and 'package_name' set")
   }
 
   if $title == 'monitoring' {
@@ -28,6 +33,12 @@ define icingaweb2::module (
       ensure   => 'present',
       provider => 'git',
       source   => $git_url,
+    }
+  }
+
+  if $package_name {
+    package { $package_name:
+      ensure => 'present',
     }
   }
 
