@@ -3,7 +3,8 @@
 
 define icingaweb2::logo (
   $path = $::icingaweb2::params::system_public_dir,
-  $image,
+  $image = undef,
+  $imgsrc = undef,
   $ensure = 'present',
 ) {
   require icingaweb2::configure
@@ -19,12 +20,23 @@ define icingaweb2::logo (
     }
   }
 
-  file { "${img_dir}/${title}":
-    ensure  => $ensure,
-    owner   => 'root',
-    group   => '0',
-    mode    => '0644',
-    content => base64('decode', $image),
+  if $image {
+    file { "${img_dir}/${title}":
+      ensure  => $ensure,
+      owner   => 'root',
+      group   => '0',
+      mode    => '0644',
+      content => base64('decode', $image),
+    }
+  }
+  if $imgsrc {
+    file { "${img_dir}/${title}":
+      ensure => $ensure,
+      owner  => 'root',
+      group  => '0',
+      mode   => '0644',
+      source => $imgsrc,
+    }
   }
 
 }
