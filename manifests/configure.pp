@@ -35,17 +35,20 @@ class icingaweb2::configure (
   }
 
   common::mkdir_p{$icingaweb2::params::default_confdir: }
-  file{$icingaweb2::params::conf_mod_dir:
-    ensure => directory
+  -> file{$icingaweb2::params::conf_mod_dir:
+    ensure  => directory,
+    require => Common::Mkdir_p[$icingaweb2::params::default_confdir],
   }
-  file { "${::icingaweb2::params::default_confdir}/modules":
-    ensure => 'directory'
+  -> file { "${::icingaweb2::params::default_confdir}/modules":
+    ensure  => 'directory',
+    require => Common::Mkdir_p[$icingaweb2::params::default_confdir],
   }
 
-  concat { "${icingaweb2::params::default_confdir}/authentication.ini":
+  -> concat { "${icingaweb2::params::default_confdir}/authentication.ini":
     owner   => 'root',
     group   => $icingaweb2::params::sysgroup,
     mode    => '0660',
+    require => Common::Mkdir_p[$icingaweb2::params::default_confdir],
   }
   concat::fragment { 'icingaweb2_authentication_ini_header':
     content => template('icingaweb2/header.erb'),
