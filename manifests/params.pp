@@ -90,6 +90,7 @@ class icingaweb2::params {
                                      'iframe' => [],
                                      'businessprocess' => [],
                                      'cube' => [],
+                                     'ipl' => [],
                                      'director' => [ 'config' ],
                                      'fileshipper' => [ 'imports' ],
                                    }
