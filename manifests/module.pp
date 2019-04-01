@@ -1,5 +1,6 @@
 define icingaweb2::module (
   $git_url = undef,
+  $version = undef,
   $package_name = undef,
   $params = undef,
 ) {
@@ -33,6 +34,7 @@ define icingaweb2::module (
       ensure   => 'present',
       provider => 'git',
       source   => $git_url,
+      revision => $version,
     }
   }
 
