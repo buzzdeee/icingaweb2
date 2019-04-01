@@ -93,6 +93,7 @@ class icingaweb2::params {
                                      'ipl' => [],
                                      'map' => [],
                                      'mapDatatype' => [],
+                                     'globe' => [],
                                      'director' => [ 'config' ],
                                      'fileshipper' => [ 'imports' ],
                                    }
