@@ -21,7 +21,7 @@ class icingaweb2::params {
       $system_public_dir       = '/var/www/icinga-web2/public'
       $package_names           = [ 'icinga-web2', ]
       $package_install_options = '-z'
-      $php_packages_ensure     = '5.6.20'
+      $php_packages_ensure     = undef
       $php_packages_prefix     = 'php-'
       $mysql_packages          = ['php-mysql', 'php-pdo_mysql']
       $pgsql_packages          = ['php-pgsql', 'php-pdo_pgsql']
