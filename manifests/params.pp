@@ -91,6 +91,8 @@ class icingaweb2::params {
                                      'businessprocess' => [],
                                      'cube' => [],
                                      'ipl' => [],
+                                     'reactbundle' => [],
+                                     'incubator' => [],
                                      'map' => [],
                                      'mapDatatype' => [],
                                      'globe' => [],
