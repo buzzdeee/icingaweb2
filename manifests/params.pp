@@ -96,6 +96,7 @@ class icingaweb2::params {
                                      'map' => [],
                                      'mapDatatype' => [],
                                      'globe' => [],
+                                     'x509' => [],
                                      'director' => [ 'config' ],
                                      'fileshipper' => [ 'imports' ],
                                    }
