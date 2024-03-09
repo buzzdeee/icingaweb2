@@ -20,17 +20,8 @@ define icingaweb2::resource (
 
   require icingaweb2
 
-  validate_re($resourcetype, [ 'db', 'ldap', 'msldap', 'ssh', ])
-
   case $resourcetype {
     'db': {
-      validate_re($dbtype, [ 'mysql', 'pgsql', ])
-      validate_string($host)
-      validate_string($dbname)
-      validate_string($user)
-      validate_string($password)
-      validate_string($charset)
-      validate_re($persistent, ['0', '1'])
       if ! $port {
         if $dbtype == 'mysql' {
           $real_port = $icingaweb2::params::mysql_default_port
@@ -40,27 +31,18 @@ define icingaweb2::resource (
       } else {
         $real_port = $port
       }
-      validate_re($real_port, '^\d+$')
     }
     'ldap': {
-      validate_string($host)
-      validate_string($encryption)
-      validate_string($root_dn)
-      validate_string($bind_dn)
-      validate_string($bind_pw)
       if ! $port {
         $real_port = $icingaweb2::params::ldap_port
       } else {
         $real_port = $port
       }
-      validate_re($real_port, '^\d+$')
     }
     'msldap': {
 
     }
     'ssh': {
-      validate_absolute_path($private_key)
-      validate_string($string)
     }
     default: {
       # cannot end up here, validate_re takes care already

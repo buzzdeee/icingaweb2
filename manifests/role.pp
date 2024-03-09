@@ -12,12 +12,6 @@ define icingaweb2::role (
     fail("${::module_name}: to define a role, you have to specify \$users or \$groups, or both.")
   }
 
-  validate_string($users)
-  validate_string($groups)
-  validate_string($permissions)
-
-
-
   concat::fragment { "icingaweb2_role_${title}":
     content => template('icingaweb2/roles.erb'),
     order   => $order,

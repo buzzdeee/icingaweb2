@@ -15,12 +15,6 @@ define icingaweb2::module (
     fail("${::module_name}: module ${name} has 'git_url' and 'package_name' set")
   }
 
-  if $title == 'monitoring' {
-    validate_hash($params['config'])
-    validate_hash($params['commandtransports'])
-    validate_hash($params['backends'])
-  }
-
   file {"icingaweb2_module_link_${title}":
     ensure => 'link',
     path   => "${icingaweb2::params::conf_mod_dir}/${title}",

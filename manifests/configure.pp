@@ -20,10 +20,6 @@ class icingaweb2::configure (
 
 
   # Some validation and sanity checks
-  validate_string($group_backend)
-  validate_string($group_resource)
-  validate_string($group_user_backend)
-  validate_re($pref_store, ['db', 'ini'])
   if $pref_store == 'db' and ! $pref_resource {
     fail ("${::module_name}: configuration store 'db' requires \$pref_source to be set")
   }
