@@ -61,7 +61,7 @@ class icingaweb2 (
   $php_packages_ensure = $icingaweb2::params::php_packages_ensure,
 ) inherits icingaweb2::params {
 
-  case $::osfamily {
+  case $facts['os']['family'] {
     'RedHat': {
       Class[icingaweb2::yumrepo] -> Class[icingaweb2::package]
 

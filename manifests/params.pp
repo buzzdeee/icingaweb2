@@ -1,6 +1,6 @@
 # The (os-dependent) default values for the module
 class icingaweb2::params {
-  case $::osfamily {
+  case $facts['os']['family'] {
     'RedHat': {
       $with_repo               = true
       $default_confdir         = '/etc/icingaweb2'
@@ -28,7 +28,7 @@ class icingaweb2::params {
       $sysgroup                = '_icingaweb2'
     }
     default: {
-      fail("${::module_name} does not support osfamily: ${::osfamily}")
+      fail("${::module_name} does not support osfamily: ${facts['os']['family']}")
     }
   }
 
