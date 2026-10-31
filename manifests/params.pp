@@ -100,6 +100,7 @@ class icingaweb2::params {
                                      'x509' => [ 'config', 'jobs'],
                                      'director' => [ 'config' ],
                                      'fileshipper' => [ 'imports' ],
+                                     'setup' => [],
                                    }
   
 }
