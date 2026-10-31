@@ -17,12 +17,13 @@ class icingaweb2::params {
     'OpenBSD': {
       $with_repo               = false
       $default_confdir         = '/var/www/etc/icingaweb2'
-      $system_mod_dir          = '/icinga-web2/modules'
+      $system_mod_dir          = '../../../icinga-web2/modules'
       $system_public_dir       = '/var/www/icinga-web2/public'
       $package_names           = [ 'icinga-web2', ]
       $package_install_options = '-z'
       $php_packages_ensure     = undef
       $php_packages_prefix     = 'php-'
+      $php_packages_branch     = undef
       $mysql_packages          = ['php-mysql', 'php-pdo_mysql']
       $pgsql_packages          = ['php-pgsql', 'php-pdo_pgsql']
       $sysgroup                = '_icingaweb2'
