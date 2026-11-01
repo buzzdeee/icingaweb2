@@ -19,7 +19,7 @@ class icingaweb2::params {
       $default_confdir         = '/var/www/etc/icingaweb2'
       $system_mod_dir          = '../../../icinga-web2/modules'
       $system_public_dir       = '/var/www/icinga-web2/public'
-      $package_names           = [ 'icinga-web2', ]
+      $package_names           = [ 'icinga-web2', 'icinga-web2-module-monitoring' ]
       $package_install_options = '-z'
       $php_packages_ensure     = undef
       $php_packages_prefix     = 'php-'
